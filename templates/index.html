@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Club Almacen</title>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+<body>
+    <h1>Bienvenido Club Almacen </h1>
+    <!-- barra de navegacion -->
+<nav class="nav-lateral">
+      <ul>
+        <li><a href="{% url 'login' %}">login</a></li>
+        <li><a href="{% url 'noticias' %}">Noticias</a></li>
+        <li><a href="{% url 'beneficios' %}">Beneficios</a></li>
+        <li><a href="{% url 'blog' %}">Blog Club Almacén</a></li>
+        <li><a href="{% url 'streaming' %}">Streaming</a></li>
+        <li><a href="{% url 'enlaces_utiles' %}">Enlaces Útiles</a></li>
+        <li><a href="{% url 'directorio' %}">Directorio</a></li>
+        <li><a href="{% url 'nuevos_comercios' %}">Nuevos Comercios</a></li>
+        <li><a href="{% url 'reunion' %}">Reuniones</a></li>
+        <li><a href="{% url 'invitaciones' %}">Invitaciones</a></li>
+      </ul>
+    </nav>
+  
+     <!-- bienvenida -->
+  <section class="contenido">
+      <div class="bloque">
+        <h2>Noticia 1</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.</p>
+      </div>
+      <div class="bloque">
+        <h2>Noticia 2</h2>
+        <p>Vivamus commodo purus ac mauris dignissim, nec consequat velit fermentum.</p>
+      </div>
+      <div class="bloque">
+        <h2>Noticia 3</h2>
+        <p>Donec blandit lacus nec ipsum consectetur, sed tincidunt nisl vehicula.</p>
+      </div>
+    </section>
+    <img src="{% static 'img/logo.png' %}" alt="Logo">
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

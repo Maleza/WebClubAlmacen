@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beneficios - Club Almacén</title>
+    <link rel="stylesheet" href="{% static 'css/beneficios.css' %}">
+    <script defer src="{% static 'js/carrusel.js' %}"></script>
+</head>
+<body>
+    <header>
+        <h1>Beneficios del Club Almacén</h1>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/noticias">Noticias</a>
+            <a href="/beneficios">Beneficios</a>
+            <a href="/blog">Blog</a>
+            <a href="/streaming">Streaming</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="carrusel">
+            <div class="carrusel-contenedor">
+                <div class="carrusel-item">
+                    <img src="https://placekitten.com/800/400" alt="Descuento en productos locales">
+                    <div class="caption">Descuentos exclusivos en productos locales</div>
+                </div>
+                <div class="carrusel-item">
+                    <img src="https://placebear.com/800/400" alt="Capacitaciones gratuitas">
+                    <div class="caption">Capacitaciones gratuitas para socios</div>
+                </div>
+                <div class="carrusel-item">
+                    <img src="https://placehold.co/800x400" alt="Red de apoyo empresarial">
+                    <div class="caption">Red de apoyo empresarial y networking</div>
+                </div>
+            </div>
+            <button class="prev">&#10094;</button>
+            <button class="next">&#10095;</button>
+        </section>
+
+        <section class="benefits-info">
+            <h2>¿Por qué ser parte del Club?</h2>
+            <p>Como socio del Club Almacén, accedes a múltiples beneficios que te ayudarán a fortalecer tu negocio, 
+               conectar con otros emprendedores y aumentar tus oportunidades de crecimiento.</p>
+            <ul>
+                <li> Descuentos en proveedores asociados</li>
+                <li> Talleres de innovación y marketing</li>
+                <li> Comunidad activa de comerciantes</li>
+                <li> Asesorías personalizadas</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Club Almacén - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

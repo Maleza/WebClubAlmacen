@@ -1,0 +1,94 @@
+/* Fondo general */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #2e7d32, #66bb6a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Contenedor principal */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Caja del formulario */
+.login-box {
+    background: white;
+    padding: 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
+}
+
+/* Títulos */
+.login-box h1 {
+    color: #2e7d32;
+    margin-bottom: 10px;
+}
+
+.login-box h2 {
+    color: #444;
+    font-weight: normal;
+    margin-bottom: 30px;
+}
+
+/* Campos */
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+/* Botón */
+.btn-login {
+    width: 100%;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #1b5e20;
+}
+
+/* Texto de registro */
+.register-text {
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+.register-text a {
+    color: #2e7d32;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-text a:hover {
+    text-decoration: underline;
+}

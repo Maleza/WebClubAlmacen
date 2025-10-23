@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streaming - Club Almacén</title>
+    <link rel="stylesheet" href="{% static 'css/streaming.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Streaming en Vivo - Club Almacén</h1>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/noticias">Noticias</a>
+            <a href="/beneficios">Beneficios</a>
+            <a href="/blog">Blog</a>
+            <a href="/streaming">Streaming</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="stream-section">
+            <div class="video-container">
+                <!-- Puedes cambiar el iframe por un <video> local -->
+                <iframe 
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                    title="Streaming Club Almacén"
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="video-description">
+                <h2>Conectando con el comercio local</h2>
+                <p>Disfruta de nuestras transmisiones en vivo con entrevistas, charlas y capacitaciones para los socios del Club Almacén.  
+                ¡Participa en tiempo real y comparte tus comentarios!</p>
+            </div>
+        </section>
+
+        <section class="comments-section">
+            <h3>💬 Deja tu comentario</h3>
+            <form class="comment-form">
+                <input type="text" placeholder="Tu nombre" required>
+                <textarea placeholder="Escribe tu comentario..." required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+
+            <div class="comments-list">
+                <div class="comment">
+                    <h4>María López</h4>
+                    <p>Excelente transmisión, me encantan las charlas sobre emprendimiento local </p>
+                </div>
+                <div class="comment">
+                    <h4>Carlos Torres</h4>
+                    <p>Muy útil la información sobre digitalización de negocios. Gracias Club Almacén!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Club Almacén - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

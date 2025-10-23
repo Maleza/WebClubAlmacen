@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevos Comercios - Club Almacén</title>
+    <link rel="stylesheet" href="{% static 'css/nuevos_comercios.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Nuevos Comercios</h1>
+        <p>Encuentra locales asociados al Club Almacén y contáctalos directamente.</p>
+    </header>
+
+    <main>
+        <section class="listado">
+            <article class="local">
+                <h2>Minimarket El Buen Vecino</h2>
+                <p><strong>Dirección:</strong> Av. Argentina 1025, Valparaíso</p>
+                <p><strong>Correo:</strong> <a href="mailto:elbuenvecino@gmail.com">elbuenvecino@gmail.com</a></p>
+                <p><strong>Teléfono:</strong> +56 9 8765 4321</p>
+                <div class="mapa">
+                    <iframe 
+                        src="https://www.google.com/maps?q=Av.%20Argentina%201025%20Valpara%C3%ADso&output=embed"
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </article>
+
+            <article class="local">
+                <h2>Panadería La Dulzura</h2>
+                <p><strong>Dirección:</strong> Calle Blanco 320, Valparaíso</p>
+                <p><strong>Correo:</strong> <a href="mailto:ladulzura@panaderia.cl">ladulzura@panaderia.cl</a></p>
+                <p><strong>Teléfono:</strong> +56 9 5554 3210</p>
+                <div class="mapa">
+                    <iframe 
+                        src="https://www.google.com/maps?q=Calle%20Blanco%20320%20Valpara%C3%ADso&output=embed"
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </article>
+
+            <article class="local">
+                <h2>Verdulería Don Pepe</h2>
+                <p><strong>Dirección:</strong> Av. Pedro Montt 1500, Valparaíso</p>
+                <p><strong>Correo:</strong> <a href="mailto:donpepe@verduras.cl">donpepe@verduras.cl</a></p>
+                <p><strong>Teléfono:</strong> +56 9 4444 5678</p>
+                <div class="mapa">
+                    <iframe 
+                        src="https://www.google.com/maps?q=Pedro%20Montt%201500%20Valpara%C3%ADso&output=embed"
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Club Almacén | Directorio de Comercios Asociados 🇨🇱</p>
+    </footer>
+</body>
+</html>

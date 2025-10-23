@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Club Almacén</title>
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Blog Club Almacén</h1>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/noticias">Noticias</a>
+            <a href="/beneficios">Beneficios</a>
+            <a href="/blog">Blog</a>
+            <a href="/streaming">Streaming</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="posts">
+            <article class="post">
+                <img src="https://placekitten.com/400/200" alt="Imagen de ejemplo">
+                <h2>Cómo potenciar tu almacén con redes sociales</h2>
+                <p>Descubre cómo las redes sociales pueden ayudarte a atraer más clientes y fidelizar tu comunidad local...</p>
+                <a href="#" class="btn">Leer más</a>
+            </article>
+
+            <article class="post">
+                <img src="https://placebear.com/400/200" alt="Imagen de ejemplo">
+                <h2>Beneficios del comercio local</h2>
+                <p>Apoyar a los negocios del barrio fortalece la economía y promueve un desarrollo sostenible...</p>
+                <a href="#" class="btn">Leer más</a>
+            </article>
+
+            <article class="post">
+                <img src="https://placehold.co/400x200" alt="Imagen de ejemplo">
+                <h2>Historias de éxito en el Club Almacén</h2>
+                <p>Conoce a los emprendedores que han transformado sus negocios con la ayuda del club...</p>
+                <a href="#" class="btn">Leer más</a>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Club Almacén - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>
