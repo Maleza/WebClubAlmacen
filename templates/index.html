@@ -2,44 +2,116 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Club Almacen</title>
-    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Club Almacén — Landing</title>
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
 </head>
 <body>
-    <h1>Bienvenido Club Almacen </h1>
-    <!-- barra de navegacion -->
-<nav class="nav-lateral">
-      <ul>
-        <li><a href="{% url 'login' %}">login</a></li>
-        <li><a href="{% url 'noticias' %}">Noticias</a></li>
-        <li><a href="{% url 'beneficios' %}">Beneficios</a></li>
-        <li><a href="{% url 'blog' %}">Blog Club Almacén</a></li>
-        <li><a href="{% url 'streaming' %}">Streaming</a></li>
-        <li><a href="{% url 'enlaces_utiles' %}">Enlaces Útiles</a></li>
-        <li><a href="{% url 'directorio' %}">Directorio</a></li>
-        <li><a href="{% url 'nuevos_comercios' %}">Nuevos Comercios</a></li>
-        <li><a href="{% url 'reunion' %}">Reuniones</a></li>
-        <li><a href="{% url 'invitaciones' %}">Invitaciones</a></li>
-      </ul>
+  <header class="topbar">
+    <button id="menu-toggle" aria-label="Abrir menú">☰</button>
+    <div class="brand">
+      <a href="{% url 'index' %}">Club Almacén</a>
+    </div>
+    <div class="search">
+      <input id="search-input" type="search" placeholder="Buscar noticias, comercios, entradas..." />
+    </div>
+  </header>
+
+  <div class="layout">
+    <!-- Navegación izquierda -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-inner">
+        <div class="logo">Club <span>Almacén</span></div>
+        <ul class="nav-list">
+          <li><a href="{% url 'noticias' %}">Noticias</a></li>
+          <li><a href="{% url 'beneficios' %}">Beneficios</a></li>
+          <li><a href="{% url 'blog' %}">Blog</a></li>
+          <li><a href="{% url 'streaming' %}">Streaming</a></li>
+          <li><a href="{% url 'enlaces_utiles' %}">Enlaces útiles</a></li>
+          <li><a href="{% url 'directorio' %}">Directorio</a></li>
+          <li><a href="{% url 'reuniones' %}">Reuniones</a></li>
+          <li><a href="{% url 'beneficios' %}#afiliate">Afíliate</a></li>
+        </ul>
+
+        <div class="sidebar-footer">
+          <a href="{% url 'login' %}" class="btn small">Entrar</a>
+          <a href="#" class="btn small outline">Contacto</a>
+        </div>
+      </div>
     </nav>
-  
-     <!-- bienvenida -->
-  <section class="contenido">
-      <div class="bloque">
-        <h2>Noticia 1</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.</p>
-      </div>
-      <div class="bloque">
-        <h2>Noticia 2</h2>
-        <p>Vivamus commodo purus ac mauris dignissim, nec consequat velit fermentum.</p>
-      </div>
-      <div class="bloque">
-        <h2>Noticia 3</h2>
-        <p>Donec blandit lacus nec ipsum consectetur, sed tincidunt nisl vehicula.</p>
-      </div>
-    </section>
-    <img src="{% static 'img/logo.png' %}" alt="Logo">
-    <script src="{% static 'js/script.js' %}"></script>
+
+    <!-- Contenido principal -->
+    <main class="main">
+      <section class="hero">
+        <div class="hero-inner">
+          <h1>Bienvenido a Club Almacén</h1>
+          <p>Conecta con comercios locales, accede a beneficios y participa en nuestras actividades.</p>
+          <div class="hero-actions">
+            <a href="{% url 'beneficios' %}" class="btn">Ver Beneficios</a>
+            <a href="{% url 'noticias' %}" class="btn outline">Últimas Noticias</a>
+          </div>
+        </div>
+        <div class="hero-image" aria-hidden="true"></div>
+      </section>
+
+      <section class="section-head">
+        <h2>Últimos contenidos</h2>
+        <p class="muted">Explora noticias, promociones y entradas destacadas.</p>
+      </section>
+
+      <section class="cards-grid" id="cards-grid">
+        <!-- Ejemplos de tarjetas; en producción genera estas tarjetas desde el backend -->
+        {% comment %} Usa un loop en Django: {% for item in items %} ... {% endfor %} {% endcomment %}
+        <article class="card" data-title="Noticia: Feria local">
+          <div class="thumb" style="background-image:url('https://placehold.co/600x340/88C0D0/ffffff?text=Noticia+1')"></div>
+          <div class="card-body">
+            <h3>Feria local: oportunidades para comercios</h3>
+            <p class="excerpt">La última feria regional reunió a decenas de emprendedores con resultados positivos...</p>
+            <div class="card-meta">
+              <span class="tag">Noticias</span>
+              <a class="readmore" href="#">Leer</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-title="Beneficio: Descuento proveedores">
+          <div class="thumb" style="background-image:url('https://placehold.co/600x340/DEB887/ffffff?text=Beneficio')"></div>
+          <div class="card-body">
+            <h3>Descuentos en insumos para socios</h3>
+            <p class="excerpt">Proveedores locales ofrecen tarifas especiales para miembros del club durante este mes.</p>
+            <div class="card-meta">
+              <span class="tag">Beneficios</span>
+              <a class="readmore" href="#">Leer</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-title="Blog: Digitaliza tu negocio">
+          <div class="thumb" style="background-image:url('https://placehold.co/600x340/9ACD32/ffffff?text=Blog')"></div>
+          <div class="card-body">
+            <h3>Guía rápida para digitalizar tu local</h3>
+            <p class="excerpt">Pequeños pasos para empezar a vender online y mejorar la gestión del comercio.</p>
+            <div class="card-meta">
+              <span class="tag">Blog</span>
+              <a class="readmore" href="#">Leer</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- duplica más tarjetas según necesites -->
+      </section>
+
+      <nav class="pagination" aria-label="Paginación">
+        <a href="#" class="page prev">‹</a>
+        <a href="#" class="page active">1</a>
+        <a href="#" class="page">2</a>
+        <a href="#" class="page">3</a>
+        <a href="#" class="page next">›</a>
+      </nav>
+    </main>
+  </div>
+
+  <script src="{% static 'js/index.js' %}"></script>
 </body>
 </html>
