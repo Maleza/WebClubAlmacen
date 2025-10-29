@@ -39,6 +39,9 @@ def streaming_html(request):
 def directorio_html(request):
     return render(request,'directorio.html')
 
+def registro_html(request):
+    return render(request,'registro.html')
+
 
 
 

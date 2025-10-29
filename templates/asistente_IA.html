@@ -2,18 +2,52 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Asistente IA- Club Almacén</title>
-  <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Asistente IA — Club Almacén</title>
+  <link rel="stylesheet" href="{% static 'css/asistente_IA.css' %}">
 </head>
 <body>
-  <h1>Asistente IA</h1>
-  <a href="/">Volver al inicio</a>
-  <section>
-    <div class="bloque">
-      <h2>Asistente 1</h2>
-      <p>Texto de ejemplo para el Asistente.</p>
-    </div>
-  </section>
+  <main class="chat-layout">
+    <aside class="chat-sidebar">
+      <div class="brand">
+        <h2>Asistente</h2>
+        <small>Club Almacén</small>
+      </div>
+
+      <div class="quick-prompts">
+        <h3>Sugerencias</h3>
+        <button class="prompt">¿Qué beneficios están activos?</button>
+        <button class="prompt">Buscar comercios cerca</button>
+        <button class="prompt">Cómo afiliarme</button>
+      </div>
+
+     
+    </aside>
+
+    <section class="chat-main">
+      <header class="chat-header">
+        <div>
+          <h3>Asistente IA</h3>
+          <p class="status" id="assistant-status">Conectado</p>
+        </div>
+        <div class="header-actions">
+          <button id="clear-btn" title="Limpiar chat">Limpiar</button>
+        </div>
+      </header>
+
+      <ul id="messages" class="messages" aria-live="polite"></ul>
+
+      <form id="chat-form" class="chat-form" autocomplete="off">
+        <textarea id="message-input" name="message" placeholder="Escribe tu pregunta..." rows="1" required></textarea>
+        <div class="form-actions">
+          <button type="button" id="mic-btn" title="Activar mic">🎤</button>
+          <button type="submit" id="send-btn">Enviar</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script src="{% static 'js/asistente_IA.js' %}"></script>
 </body>
 </html>
