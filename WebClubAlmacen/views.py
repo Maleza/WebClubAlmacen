@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from .forms import UsuarioForm
+from django.contrib import messages
 
 def index_html(request):
     return render(request,'index.html')
@@ -42,9 +44,14 @@ def directorio_html(request):
 def registro_html(request):
     return render(request,'registro.html')
 
-
-
-
-
-
-
+#vistas  CRUD
+def registro_usuario(request):
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Usuario registrado correctamente.")
+            return redirect('index')  
+    else:
+        form = UsuarioForm()
+    return render(request, 'registro.html', {'form': form})

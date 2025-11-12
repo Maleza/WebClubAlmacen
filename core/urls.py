@@ -18,6 +18,6 @@ urlpatterns = [
     path('reuniones/', views.reunion_html, name='reuniones'),
     path('streaming/', views.streaming_html, name='streaming'),
     path('directorio/', views.directorio_html, name='directorio'),
-    path('registro/', views.registro_html, name='registro'),
+    path('registro/', views.registro_usuario, name='registro'),
     path('asistente_IA/', views.asistente_IA_html, name='asistente_IA'),
 ]
