@@ -51,7 +51,7 @@ def registro_usuario(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Usuario registrado correctamente.")
-            return redirect('index')  
+            return redirect('index')   
     else:
         form = UsuarioForm()
     return render(request, 'registro.html', {'form': form})
