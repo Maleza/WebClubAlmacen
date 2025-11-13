@@ -39,28 +39,34 @@
         </section>
 
         <section class="comments-section">
-            <h3>💬 Deja tu comentario</h3>
-            <form class="comment-form">
-                <input type="text" placeholder="Tu nombre" required>
-                <textarea placeholder="Escribe tu comentario..." required></textarea>
-                <button type="submit">Enviar</button>
-            </form>
+  <h2>Comentarios</h2>
 
-            <div class="comments-list">
-                <div class="comment">
-                    <h4>María López</h4>
-                    <p>Excelente transmisión, me encantan las charlas sobre emprendimiento local </p>
-                </div>
-                <div class="comment">
-                    <h4>Carlos Torres</h4>
-                    <p>Muy útil la información sobre digitalización de negocios. Gracias Club Almacén!</p>
-                </div>
-            </div>
-        </section>
-    </main>
+  <!-- Formulario de  comentario -->
+  <form method="post" class="comment-form">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="{{ form.nombre.id_for_label }}">Nombre</label>
+      {{ form.nombre }}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.contenido.id_for_label }}">Comentario</label>
+      {{ form.contenido }}
+    </div>
+    <button type="submit" class="btn-enviar">Enviar comentario</button>
+  </form>
 
-    <footer>
-        <p>© 2025 Club Almacén - Todos los derechos reservados</p>
-    </footer>
-</body>
-</html>
+  <!-- Lista de comentarios -->
+  <div class="comment-list">
+    {% for comentario in comentarios %}
+      <div class="comment-card">
+        <div class="comment-header">
+          <strong>{{ comentario.nombre }}</strong>
+          <span class="comment-date">{{ comentario.fecha|date:"d/m/Y H:i" }}</span>
+        </div>
+        <p class="comment-text">{{ comentario.contenido }}</p>
+      </div>
+    {% empty %}
+      <p class="no-comments">Aún no hay comentarios. Sé el primero en opinar.</p>
+    {% endfor %}
+  </div>
+</section>

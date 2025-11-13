@@ -1,6 +1,9 @@
 from django.shortcuts import render,redirect
 from .forms import UsuarioForm
+from .forms import ComentarioForm
 from django.contrib import messages
+from .models import Comentario
+
 
 def index_html(request):
     return render(request,'index.html')
@@ -55,3 +58,20 @@ def registro_usuario(request):
     else:
         form = UsuarioForm()
     return render(request, 'registro.html', {'form': form})
+
+
+def streaming_html(request):
+    comentarios = Comentario.objects.order_by('-fecha')  # lista de comentarios
+
+    if request.method == 'POST':
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('streaming')  # debe coincidir con el nombre del path en urls.py
+    else:
+        form = ComentarioForm()
+
+    return render(request, 'streaming.html', {
+        'form': form,
+        'comentarios': comentarios
+    })
