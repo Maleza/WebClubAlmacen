@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ noticia.titulo }}</title>
+  <link rel="stylesheet" href="{% static 'css/noticias.css' %}">
+</head>
+<body>
+  <article class="noticia-detalle">
+    {% if noticia.imagen %}
+      <img src="{{ noticia.imagen.url }}" alt="{{ noticia.titulo }}">
+    {% endif %}
+    <h1>{{ noticia.titulo }}</h1>
+    <p><em>Por {{ noticia.autor }} — {{ noticia.fecha_publicacion|date:"d/m/Y H:i" }}</em></p>
+    <p>{{ noticia.contenido|linebreaks }}</p>
+    <a href="{% url 'noticias' %}">← Volver a Noticias</a>
+  </article>
+</body>
+</html>

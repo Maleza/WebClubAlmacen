@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Eliminar Noticia</title>
+</head>
+<body>
+  <h2>¿Seguro que deseas eliminar esta noticia?</h2>
+  <p><strong>{{ noticia.titulo }}</strong></p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Sí, eliminar</button>
+    <a href="{% url 'noticias' %}">Cancelar</a>
+  </form>
+</body>
+</html>

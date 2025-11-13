@@ -2,12 +2,18 @@
 from django.contrib import admin
 from django.urls import path
 from WebClubAlmacen import views 
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index_html, name='index'),
     path('login/', views.login_html, name='login'),
     path('noticias/', views.noticias_html, name='noticias'),
+    path('noticias/<int:pk>/', views.noticia_detalle, name='noticia_detalle'),
+    path('noticias/crear/', views.noticia_crear, name='noticia_crear'),
+    path('noticias/editar/<int:pk>/', views.noticia_editar, name='noticia_editar'),
+    path('noticias/eliminar/<int:pk>/', views.noticia_eliminar, name='noticia_eliminar'),
     path('blog/', views.blog_html, name='blog'),
     path('streaming/', views.streaming_html, name='streaming'),
     path('beneficios/', views.beneficios_html, name='beneficios'),
@@ -21,3 +27,6 @@ urlpatterns = [
     path('registro/', views.registro_usuario, name='registro'),
     path('asistente_IA/', views.asistente_IA_html, name='asistente_IA'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

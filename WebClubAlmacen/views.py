@@ -1,8 +1,8 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .forms import UsuarioForm
-from .forms import ComentarioForm
+from .forms import ComentarioForm,NoticiaForm
 from django.contrib import messages
-from .models import Comentario
+from .models import Comentario,Noticia
 
 
 def index_html(request):
@@ -75,3 +75,48 @@ def streaming_html(request):
         'form': form,
         'comentarios': comentarios
     })
+
+#Vistas de Noticias 
+# Listar todas las noticias
+def noticias_html(request):
+    noticias = Noticia.objects.all()
+    return render(request, 'noticias.html', {'noticias': noticias})
+
+# Ver una noticia en detalle
+def noticia_detalle(request, pk):
+    noticia = get_object_or_404(Noticia, pk=pk)
+    return render(request, 'noticia_detalle.html', {'noticia': noticia})
+
+# Crear nueva noticia
+def noticia_crear(request):
+    if request.method == 'POST':
+        form = NoticiaForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Noticia creada exitosamente.")
+            return redirect('noticias')
+    else:
+        form = NoticiaForm()
+    return render(request, 'noticia_form.html', {'form': form, 'accion': 'Crear'})
+
+# Editar una noticia existente
+def noticia_editar(request, pk):
+    noticia = get_object_or_404(Noticia, pk=pk)
+    if request.method == 'POST':
+        form = NoticiaForm(request.POST, request.FILES, instance=noticia)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Noticia actualizada correctamente.")
+            return redirect('noticias')
+    else:
+        form = NoticiaForm(instance=noticia)
+    return render(request, 'noticia_form.html', {'form': form, 'accion': 'Editar'})
+
+# Eliminar una noticia
+def noticia_eliminar(request, pk):
+    noticia = get_object_or_404(Noticia, pk=pk)
+    if request.method == 'POST':
+        noticia.delete()
+        messages.success(request, "Noticia eliminada correctamente.")
+        return redirect('noticias')
+    return render(request, 'noticia_eliminar.html', {'noticia': noticia})

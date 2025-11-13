@@ -1,5 +1,5 @@
 from django import forms
-from .models import Usuario, Comentario
+from .models import Usuario, Comentario, Noticia
 from django.contrib.auth.hashers import make_password
 
 
@@ -63,4 +63,23 @@ class ComentarioForm(forms.ModelForm):
                 'class': 'textarea-box',
                 'rows': 4
             }),
+        }
+
+#Formulario de Noticias
+class NoticiaForm(forms.ModelForm):
+    class Meta:
+        model = Noticia
+        fields = ['titulo', 'resumen', 'contenido', 'imagen', 'autor']
+        labels = {
+            'titulo': 'Título',
+            'resumen': 'Resumen breve',
+            'contenido': 'Contenido completo',
+            'imagen': 'Imagen destacada',
+            'autor': 'Autor',
+        }
+        widgets = {
+            'titulo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título de la noticia'}),
+            'resumen': forms.Textarea(attrs={'class': 'form-control', 'rows': 2, 'placeholder': 'Resumen corto'}),
+            'contenido': forms.Textarea(attrs={'class': 'form-control', 'rows': 6, 'placeholder': 'Contenido completo'}),
+            'autor': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre del autor'}),
         }

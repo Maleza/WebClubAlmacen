@@ -1,104 +1,150 @@
+/* ==== CONFIGURACIÓN GENERAL ==== */
 body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
 }
 
-header {
-    background-color: #1e3a8a;
-    color: white;
-    text-align: center;
-    padding: 1.5rem;
+/* ==== ENCABEZADO ==== */
+h1 {
+  text-align: center;
+  margin-top: 40px;
+  color: #2c3e50;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2rem;
+/* ==== CONTENEDOR DE NOTICIAS ==== */
+.noticias-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
 }
 
-nav {
-    margin-top: 1rem;
+/* ==== TARJETAS ==== */
+.noticia-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
 }
 
-nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 10px;
-    font-weight: bold;
+.noticia-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-nav a:hover {
-    text-decoration: underline;
+/* ==== IMAGEN ==== */
+.noticia-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
-main {
-    display: flex;
-    justify-content: center;
-    padding: 2rem;
+/* ==== CONTENIDO ==== */
+.noticia-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
-.news-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
-    width: 90%;
-    max-width: 1200px;
+.noticia-content h2 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #2c3e50;
 }
 
-.news-card {
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease;
+.noticia-content p {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
 }
 
-.news-card:hover {
-    transform: translateY(-5px);
+/* ==== BOTONES ==== */
+.actions {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
 }
 
-.news-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+.actions a, 
+.actions button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.news-content {
-    padding: 1rem;
+.actions a:hover,
+.actions button:hover {
+  background-color: #0056b3;
 }
 
-.news-content h2 {
-    color: #1e3a8a;
-    margin-bottom: 0.5rem;
+/* ==== FORMULARIO DE NUEVA NOTICIA ==== */
+form {
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 600px;
+  margin: 30px auto;
 }
 
-.news-content p {
-    color: #555;
-    line-height: 1.5;
-    font-size: 0.95rem;
+form p {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
-.btn {
-    display: inline-block;
-    margin-top: 1rem;
-    background-color: #1e3a8a;
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background 0.2s;
+form input, 
+form textarea {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  margin-top: 5px;
+  transition: border-color 0.3s;
 }
 
-.btn:hover {
-    background-color: #3b82f6;
+form input:focus, 
+form textarea:focus {
+  border-color: #007bff;
+  outline: none;
 }
 
-footer {
-    background-color: #1e3a8a;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
+/* ==== BOTÓN DE ENVÍO ==== */
+form button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background-color: #218838;
 }

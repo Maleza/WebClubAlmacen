@@ -2,57 +2,32 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticias - Club Almacén</title>
-    <link rel="stylesheet" href="{% static 'css/noticias.css' %}">
+  <meta charset="UTF-8">
+  <title>Noticias - Club Almacén</title>
+  <link rel="stylesheet" href="{% static 'css/noticias.css' %}">
 </head>
 <body>
-    <header>
-        <h1>Noticias del Club Almacén</h1>
-        <nav>
-            <a href="/">Inicio</a>
-            <a href="/noticias">Noticias</a>
-            <a href="/beneficios">Beneficios</a>
-            <a href="/blog">Blog</a>
-            <a href="/streaming">Streaming</a>
-        </nav>
-    </header>
+  <h1>Noticias del Club Almacén</h1>
 
-    <main>
-        <section class="news-container">
-            <article class="news-card">
-                <img src="https://placehold.co/400x200" alt="Imagen noticia 1">
-                <div class="news-content">
-                    <h2>Almaceneros se unen por la innovación local</h2>
-                    <p>El Club Almacén reunió a más de 100 comerciantes en un encuentro para fortalecer el comercio de barrio y fomentar la digitalización.</p>
-                    <a href="#" class="btn">Leer más</a>
-                </div>
-            </article>
+  <a href="{% url 'noticia_crear' %}" class="btn">+ Nueva Noticia</a>
 
-            <article class="news-card">
-                <img src="https://placekitten.com/400/200" alt="Imagen noticia 2">
-                <div class="news-content">
-                    <h2>Nuevos beneficios para socios activos</h2>
-                    <p>Los socios que participen en las capacitaciones recibirán descuentos exclusivos en proveedores asociados al club.</p>
-                    <a href="#" class="btn">Leer más</a>
-                </div>
-            </article>
-
-            <article class="news-card">
-                <img src="https://placebear.com/400/200" alt="Imagen noticia 3">
-                <div class="news-content">
-                    <h2>Campaña solidaria de invierno 2025</h2>
-                    <p>El Club Almacén lanza una nueva campaña para apoyar a familias vulnerables a través de donaciones coordinadas entre locales asociados.</p>
-                    <a href="#" class="btn">Leer más</a>
-                </div>
-            </article>
-        </section>
-    </main>
-
-    <footer>
-        <p>© 2025 Club Almacén - Todos los derechos reservados</p>
-    </footer>
+  <section class="noticias-lista">
+    {% for noticia in noticias %}
+      <article class="noticia-card">
+        {% if noticia.imagen %}
+          <img src="{{ noticia.imagen.url }}" alt="{{ noticia.titulo }}">
+        {% endif %}
+        <h2><a href="{% url 'noticia_detalle' noticia.pk %}">{{ noticia.titulo }}</a></h2>
+        <p>{{ noticia.resumen }}</p>
+        <small>Por {{ noticia.autor }} — {{ noticia.fecha_publicacion|date:"d/m/Y" }}</small>
+        <div class="acciones">
+          <a href="{% url 'noticia_editar' noticia.pk %}">Editar</a> |
+          <a href="{% url 'noticia_eliminar' noticia.pk %}">Eliminar</a>
+        </div>
+      </article>
+    {% empty %}
+      <p>No hay noticias disponibles.</p>
+    {% endfor %}
+  </section>
 </body>
 </html>
-

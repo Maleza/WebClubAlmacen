@@ -23,3 +23,17 @@ class Comentario(models.Model):
 
     def __str__(self):
         return f"{self.nombre} - {self.fecha.strftime('%Y-%m-%d %H:%M')}"
+
+class Noticia(models.Model):
+    titulo = models.CharField(max_length=200)
+    resumen = models.CharField(max_length=300)
+    contenido = models.TextField()
+    imagen = models.ImageField(upload_to='noticias/', blank=True, null=True)
+    autor = models.CharField(max_length=100)
+    fecha_publicacion = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.titulo
+
+    class Meta:
+        ordering = ['-fecha_publicacion']
