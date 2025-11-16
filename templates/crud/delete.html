@@ -1,0 +1,10 @@
+{% extends 'crud/base.html' %}
+{% block content %}
+  <h2>{{ title }}</h2>
+  <p>¿Seguro que deseas eliminar "<strong>{{ object }}</strong>"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+    <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
+  </form>
+{% endblock %}

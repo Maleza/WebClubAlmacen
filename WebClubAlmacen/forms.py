@@ -1,5 +1,5 @@
 from django import forms
-from .models import Usuario, Comentario, Noticia
+from .models import * 
 from django.contrib.auth.hashers import make_password
 
 
@@ -83,3 +83,49 @@ class NoticiaForm(forms.ModelForm):
             'contenido': forms.Textarea(attrs={'class': 'form-control', 'rows': 6, 'placeholder': 'Contenido completo'}),
             'autor': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre del autor'}),
         }
+
+
+class BlogPostForm(forms.ModelForm):
+    class Meta:
+        model = BlogPost
+        fields = '__all__'
+
+class StreamingForm(forms.ModelForm):
+    class Meta:
+        model = Streaming
+        fields = '__all__'
+
+class BeneficioForm(forms.ModelForm):
+    class Meta:
+        model = Beneficio
+        fields = '__all__'
+
+class EnlaceUtilForm(forms.ModelForm):
+    class Meta:
+        model = EnlaceUtil
+        fields = '__all__'
+
+class InvitacionForm(forms.ModelForm):
+    class Meta:
+        model = Invitacion
+        fields = '__all__'
+
+class NuevoComercioForm(forms.ModelForm):
+    class Meta:
+        model = NuevoComercio
+        fields = '__all__'
+
+class RedSocialForm(forms.ModelForm):
+    class Meta:
+        model = RedSocial
+        fields = '__all__'
+
+class ReunionForm(forms.ModelForm):
+    class Meta:
+        model = Reunion
+        fields = '__all__'
+
+class DirectorioForm(forms.ModelForm):
+    class Meta:
+        model = Directorio
+        fields = '__all__'

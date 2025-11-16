@@ -1,0 +1,22 @@
+{% extends 'crud/base.html' %}
+{% block content %}
+  <h2>{{ object }}</h2>
+  {% if object.imagen %}
+    <img src="{{ object.imagen.url }}" class="img-fluid mb-3" alt="{{ object }}">
+  {% endif %}
+  {% if object.resumen %}
+    <p><strong>Resumen:</strong> {{ object.resumen }}</p>
+  {% endif %}
+  {% if object.descripcion %}
+    <p>{{ object.descripcion|linebreaks }}</p>
+  {% elif object.contenido %}
+    <p>{{ object.contenido|linebreaks }}</p>
+  {% endif %}
+
+  <div class="mt-3">
+    {% if user.has_perm edit_perm %}
+      <a href="{% url edit_url object.pk %}" class="btn btn-primary">Editar</a>
+    {% endif %}
+    <a href="javascript:history.back()" class="btn btn-secondary">Volver</a>
+  </div>
+{% endblock %}
