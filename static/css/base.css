@@ -1,0 +1,81 @@
+/* ---------- CONTENEDOR GENERAL ---------- */
+.form-container {
+    max-width: 700px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ----------
+   TÍTULOS
+---------- */
+.form-container h2, 
+.form-container h3, 
+.page-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+    width: 100%;
+}
+
+/* ----------
+   CAMPOS DEL FORMULARIO
+---------- */
+.form-control,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+    border-radius: 8px !important;
+    margin-bottom: 15px;
+}
+
+/* ----------
+   BOTONES
+---------- */
+.form-container .btn-primary {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #004c8c;
+    color: white;
+    cursor: pointer;
+}
+
+.form-container .btn-primary:hover {
+    background-color: #006bb3;
+}
+
+/* ----------
+   CONTENEDOR DE BOTONES SECUNDARIOS
+---------- */
+.form-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.form-actions .btn {
+    border-radius: 8px;
+    padding: 8px 16px;
+}
+
+/* ----------
+   IMÁGENES PREVISUALIZADAS
+---------- */
+.preview-image {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}

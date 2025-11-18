@@ -1,20 +1,27 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import AbstractUser
 
 
-# Create your models here.
-class Usuario(models.Model):
-    
+# Modelo de Atenticacion de Usuario  Heredando  de Django 
+class Usuario(AbstractUser):
+    username = None  
+
+    email = models.EmailField(unique=True)
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = [] 
+
     nombre = models.CharField(max_length=100)
     apaterno = models.CharField(max_length=100)
     amaterno = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    contrasena = models.CharField(max_length=128, null=True,blank=True)
-    fecha_registro = models.DateTimeField(auto_now_add=True)
-    tipo_usuario = models.CharField(max_length=50)
+    tipo_usuario = models.CharField(max_length=30, choices=[
+        ('admin', 'Administrador'),
+        ('editor', 'Editor'),
+        ('lector', 'Lector'),
+    ], default='lector')
 
-    def __str__(self):
-        return self.nombre
+
 
 class Comentario(models.Model):
     nombre = models.CharField(max_length=100)
