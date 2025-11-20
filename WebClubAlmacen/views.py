@@ -3,10 +3,12 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.views import LoginView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy    
 
 from .forms import *
 from .models import *
+from WebClubAlmacen.models import DashboardItem
+from WebClubAlmacen.forms import DashboardItemForm
 
 
 # ---------------------------
@@ -31,28 +33,28 @@ class UsuarioLoginView(LoginView):
 
     def get_success_url(self):
        return self.get_redirect_url() or reverse_lazy('index')
+    
+
 def login_view(request):
     if request.method == "POST":
         email = request.POST.get("email")
         password = request.POST.get("password")
 
-        user = authenticate(request, email=email, password=password)
+        user = authenticate(request, username=email, password=password)
 
-        if user is not None:
+        if user:
             login(request, user)
 
-            # Redirección prioritaria a 'next'
-            next_url = request.GET.get("next")
-            if next_url:
-                return redirect(next_url)
+            # Redirección según tipo de usuario
+            if user.tipo_usuario == "administrador" :
+                return redirect("dashboard_html") 
+            else:
+                return redirect("index")
 
-            return redirect("index")  # Redirección normal
-        else:
-            return render(request, "login.html", {
-                "error": "Email o contraseña incorrectos.",
-            })
+        messages.error(request, "Credenciales inválidas")
 
     return render(request, "login.html")
+
 
 
 def logout_view(request):

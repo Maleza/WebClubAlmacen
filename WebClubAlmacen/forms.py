@@ -94,6 +94,24 @@ class NoticiaForm(forms.ModelForm):
             'contenido': forms.Textarea(attrs={'class': 'form-control', 'rows': 6, 'placeholder': 'Contenido completo'}),
             'autor': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre del autor'}),
         }
+#Dashboard Item Form
+class DashboardItemForm(forms.ModelForm):
+    class Meta:
+        model = DashboardItem
+        fields = "__all__"
+
+        widgets = {
+            "titulo": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Título del ítem"
+            }),
+            "descripcion": forms.Textarea(attrs={
+                "class": "form-control",
+                "placeholder": "Descripción detallada",
+                "rows": 4
+            }),
+        }
+
 
 
 class BlogPostForm(forms.ModelForm):
