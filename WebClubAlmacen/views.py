@@ -16,7 +16,59 @@ from WebClubAlmacen.forms import DashboardItemForm
 # ---------------------------
 
 def index_html(request):
-    return render(request, 'index.html')
+    ultimas_noticias = Noticia.objects.order_by('-id')[:4]
+    ultimos_beneficios = Beneficio.objects.order_by('-id')[:4]
+    ultimos_blogs = BlogPost.objects.order_by('-id')[:4]
+    ultimos_streams = Streaming.objects.order_by('-id')[:4]
+
+    # Unificamos todos los elementos en una sola lista
+    items = []
+
+    for n in ultimas_noticias:
+        items.append({
+            "titulo": n.titulo,
+            "descripcion": n.contenido[:120],
+            "imagen": n.imagen.url if n.imagen else None,
+            "categoria": "Noticias",
+            "link": f"/noticias/{n.pk}/"
+        })
+
+    for b in ultimos_beneficios:
+        items.append({
+            "titulo": b.titulo,
+            "descripcion": b.descripcion[:120],
+            "imagen": b.imagen.url if hasattr(b, "imagen") and b.imagen else None,
+            "categoria": "Beneficios",
+            "link": f"/beneficios/"
+        })
+
+    for blog in ultimos_blogs:
+        items.append({
+            "titulo": blog.titulo,
+            "descripcion": blog.contenido[:120],
+            "imagen": blog.imagen.url if blog.imagen else None,
+            "categoria": "Blog",
+            "link": f"/blog/{blog.pk}/"
+        })
+
+    for s in ultimos_streams:
+        items.append({
+            "titulo": s.titulo,
+            "descripcion": s.descripcion[:120],
+            "imagen": None,
+            "categoria": "Streaming",
+            "link": f"/streaming/{s.pk}/"
+        })
+
+    context = {
+        "items": items
+    }
+
+    return render(request, "index.html", context)
+
+
+
+
 
 def asistente_IA_html(request):
     return render(request, 'asistente_IA.html')

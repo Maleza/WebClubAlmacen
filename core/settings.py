@@ -68,7 +68,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'webclubalmacen_db',
         'USER': 'postgres',
-        'PASSWORD': '1234',
+        'PASSWORD': 'desarrollo',
         'HOST': 'localhost',
         'PORT': '5432',
     }

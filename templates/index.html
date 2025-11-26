@@ -4,25 +4,36 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Club Almacén — Landing</title>
+  <title>Club Almacén — Inicio</title>
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
 </head>
+
 <body>
+
+  <!-- Topbar -->
   <header class="topbar">
     <button id="menu-toggle" aria-label="Abrir menú">☰</button>
+
     <div class="brand">
       <a href="{% url 'index' %}">Club Almacén</a>
     </div>
+
     <div class="search">
-      <input id="search-input" type="search" placeholder="Buscar noticias, comercios, entradas..." />
+      <input id="search-input" type="search" placeholder="Buscar noticias, comercios, entradas..."/>
     </div>
   </header>
 
+
   <div class="layout">
-    <!-- Navegación izquierda -->
+
+    <!-- SIDEBAR -->
     <nav class="sidebar" id="sidebar">
       <div class="sidebar-inner">
-        <div class="logo">Club <span>Almacén</span></div>
+
+        <div class="logo">
+          Club <span>Almacén</span>
+        </div>
+
         <ul class="nav-list">
           <li><a href="{% url 'noticias' %}">Noticias</a></li>
           <li><a href="{% url 'beneficios' %}">Beneficios</a></li>
@@ -32,7 +43,7 @@
           <li><a href="{% url 'directorio' %}">Directorio</a></li>
           <li><a href="{% url 'reuniones' %}">Reuniones</a></li>
           <li><a href="{% url 'beneficios' %}#afiliate">Afíliate</a></li>
-          <li><a href="{% url 'asistente_IA' %}#Asistente">Asistente IA </a></li>
+          <li><a href="{% url 'asistente_IA' %}">Asistente IA</a></li>
         </ul>
 
         <div class="sidebar-footer">
@@ -42,67 +53,65 @@
       </div>
     </nav>
 
-    <!-- Contenido principal -->
+
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="main">
+
+      <!-- HERO -->
       <section class="hero">
         <div class="hero-inner">
           <h1>Bienvenido a Club Almacén</h1>
           <p>Conecta con comercios locales, accede a beneficios y participa en nuestras actividades.</p>
+
           <div class="hero-actions">
             <a href="{% url 'beneficios' %}" class="btn">Ver Beneficios</a>
             <a href="{% url 'noticias' %}" class="btn outline">Últimas Noticias</a>
           </div>
         </div>
+
         <div class="hero-image" aria-hidden="true"></div>
       </section>
 
+
+      <!-- TÍTULO DE SECCIÓN -->
       <section class="section-head">
         <h2>Últimos contenidos</h2>
         <p class="muted">Explora noticias, promociones y entradas destacadas.</p>
       </section>
 
+
+      <!-- TARJETAS GENERADAS DESDE EL BACKEND -->
       <section class="cards-grid" id="cards-grid">
-        <!-- Ejemplos de tarjetas; en producción genera estas tarjetas desde el backend -->
-        {% comment %} Usa un loop en Django: {% for item in items %} ... {% endfor %} {% endcomment %}
-        <article class="card" data-title="Noticia: Feria local">
-          <div class="thumb" style="background-image:url('https://placehold.co/600x340/88C0D0/ffffff?text=Noticia+1')"></div>
+
+        {% for item in items %}
+        <article class="card">
+
+          <div class="thumb"
+               style="background-image:url('{{ item.imagen|default:"https://placehold.co/600x340/cccccc?text=Sin+Imagen" }}')">
+          </div>
+
           <div class="card-body">
-            <h3>Feria local: oportunidades para comercios</h3>
-            <p class="excerpt">La última feria regional reunió a decenas de emprendedores con resultados positivos...</p>
+            <h3>{{ item.titulo }}</h3>
+            <p class="excerpt">{{ item.descripcion }}</p>
+
             <div class="card-meta">
-              <span class="tag">Noticias</span>
-              <a class="readmore" href="#">Leer</a>
+              <span class="tag">{{ item.categoria }}</span>
+              <a class="readmore" 
+                 href="{{ item.link|default:'#' }}">
+                 Leer
+              </a>
             </div>
           </div>
         </article>
+        {% empty %}
+        <p class="muted">No hay contenido disponible.</p>
+        {% endfor %}
 
-        <article class="card" data-title="Beneficio: Descuento proveedores">
-          <div class="thumb" style="background-image:url('https://placehold.co/600x340/DEB887/ffffff?text=Beneficio')"></div>
-          <div class="card-body">
-            <h3>Descuentos en insumos para socios</h3>
-            <p class="excerpt">Proveedores locales ofrecen tarifas especiales para miembros del club durante este mes.</p>
-            <div class="card-meta">
-              <span class="tag">Beneficios</span>
-              <a class="readmore" href="#">Leer</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" data-title="Blog: Digitaliza tu negocio">
-          <div class="thumb" style="background-image:url('https://placehold.co/600x340/9ACD32/ffffff?text=Blog')"></div>
-          <div class="card-body">
-            <h3>Guía rápida para digitalizar tu local</h3>
-            <p class="excerpt">Pequeños pasos para empezar a vender online y mejorar la gestión del comercio.</p>
-            <div class="card-meta">
-              <span class="tag">Blog</span>
-              <a class="readmore" href="#">Leer</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- duplica más tarjetas según necesites -->
       </section>
 
+
+
+      <!-- PAGINACIÓN -->
       <nav class="pagination" aria-label="Paginación">
         <a href="#" class="page prev">‹</a>
         <a href="#" class="page active">1</a>
@@ -110,20 +119,31 @@
         <a href="#" class="page">3</a>
         <a href="#" class="page next">›</a>
       </nav>
+
     </main>
   </div>
+
+
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
+
       <div class="footer-links">
         <a href="{% url 'index' %}">Inicio</a>
-        <a href="{% url 'beneficios' %}">Beneficios</a>    
+        <a href="{% url 'beneficios' %}">Beneficios</a>
         <a href="{% url 'noticias' %}">Noticias</a>
       </div>
+
       <div class="footer-copy">
         &copy; 2025 Club Almacén. Todos los derechos reservados.
       </div>
-    </div>
 
+    </div>
+  </footer>
+
+
+  <!-- JS -->
   <script src="{% static 'js/index.js' %}"></script>
+
 </body>
 </html>

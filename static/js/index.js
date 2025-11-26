@@ -1,23 +1,35 @@
-// menú móvil
-document.addEventListener('DOMContentLoaded', () => {
-  const toggle = document.getElementById('menu-toggle');
-  const sidebar = document.getElementById('sidebar');
+let page = 1;
+let loading = false;
 
-  toggle?.addEventListener('click', () => {
-    sidebar.classList.toggle('open');
-  });
+window.addEventListener('scroll', async () => {
+    if (loading) return;
 
-  // búsqueda simple por título (filtra tarjetas)
-  const search = document.getElementById('search-input');
-  const cards = Array.from(document.querySelectorAll('.card'));
+    // Si llegamos al fondo
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
+        loading = true;
+        page++;
 
-  function filtrar(term){
-    const q = term.trim().toLowerCase();
-    cards.forEach(card => {
-      const title = (card.dataset.title || card.querySelector('h3')?.innerText || '').toLowerCase();
-      card.style.display = title.includes(q) ? '' : 'none';
-    });
-  }
+        const response = await fetch(`/api/index-items/?page=${page}`);
+        const data = await response.json();
 
-  search?.addEventListener('input', (e) => filtrar(e.target.value));
+        const container = document.getElementById("cards-grid");
+
+        data.items.forEach(item => {
+            container.innerHTML += `
+                <article class="card">
+                  <div class="thumb" style="background-image:url('${item.imagen}')"></div>
+                  <div class="card-body">
+                    <h3>${item.titulo}</h3>
+                    <p class="excerpt">${item.descripcion}</p>
+                    <div class="card-meta">
+                      <span class="tag">${item.categoria}</span>
+                      <a class="readmore" href="${item.link}">Leer</a>
+                    </div>
+                  </div>
+                </article>
+            `;
+        });
+
+        loading = false;
+    }
 });
