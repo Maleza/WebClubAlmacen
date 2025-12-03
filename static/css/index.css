@@ -14,6 +14,12 @@ body {
     justify-content: center;
     
 }
+/* Alinear contenido principal sin que se superponga con sidebar */
+.main {
+    margin-left: 260px;   /* igual al ancho de la sidebar */
+    padding: 20px;
+    width: calc(100% - 260px);
+}
 
 /* ---------------------------------------------------------
    TOPBAR MODERNO
@@ -75,16 +81,14 @@ body {
    SIDEBAR MODERNA
 --------------------------------------------------------- */
 .sidebar {
-    width: 240px;
-    background: #ffffff;
-    border-right: 1px solid #e5e7eb;
     position: fixed;
-    top: 64px;
-    bottom: 0;
     left: 0;
+    top: 56px;
+    width: 260px;
+    height: calc(100% - 56px);
     overflow-y: auto;
-    padding: 20px;
-    transition: transform 0.3s ease;
+    background: #fff;
+    border-right: 1px solid #ddd;
 }
 
 .sidebar .logo {
@@ -157,16 +161,21 @@ body {
    HERO SECTION
 --------------------------------------------------------- */
 .hero {
+<<<<<<< HEAD
     margin-left: 260px;
     padding: 60px 40px;
     background: linear-gradient(135deg, #eb9525, #af6b1e);
+=======
+    width: 100%;
+    background: linear-gradient(135deg, #e68524, #af701e);
+>>>>>>> 94e6925aca53295361b5e0165118289792afb8e9
     color: white;
     border-radius: 16px;
-    margin-top: 20px;
-    margin-right: 20px;
+    padding: 40px;
+    min-height: 300px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 40px;
 }
 
 .hero-inner {
@@ -236,33 +245,31 @@ body {
 
 
 
-/* Contenedor de tarjetas estilo Instagram */
+/* ===== GRILLA 2 COLUMNAS ===== */
+
 .cards-grid {
     margin-top: 40px;
     display: grid;
+<<<<<<< HEAD
     grid-template-columns: repeat(2, 1fr);
     gap: 28px;
 
     /* centrarlas dentro del espacio */
     width: calc(100% - 260px);
     margin-left: 260px;
+=======
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    gap: 30px;
+>>>>>>> 94e6925aca53295361b5e0165118289792afb8e9
 }
 
-/* Tarjeta */
 .card {
-    background: #fff;
+    background: #ffffff;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    transition: transform .2s ease, box-shadow .2s ease;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
 }
 
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.14);
-}
-
-/* Imagen */
 .thumb {
     width: 100%;
     height: 200px;
@@ -270,40 +277,27 @@ body {
     background-position: center;
 }
 
-/* Texto */
 .card-body {
-    padding: 15px;
+    padding: 20px;
 }
 
+/* Texto */
 .card-body h3 {
-    font-size: 18px;
-    margin: 5px 0 10px;
-    font-weight: 600;
-    color: #222;
+    margin: 0 0 12px;
+    font-size: 20px;
 }
 
-.excerpt {
-    color: #444;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-/* Categoría */
-.tag {
-    background: #0077ff;
-    color: #fff;
-    padding: 3px 8px;
-    border-radius: 8px;
-    font-size: 12px;
+.card-body p {
+    margin: 0 0 15px;
+    color: #555;
 }
 
 .readmore {
-    margin-left: auto;
-    font-size: 14px;
-    color: #0077ff;
-    text-decoration: none;
+    color: #2a72ff;
+    font-weight: bold;
 }
 
+<<<<<<< HEAD
 .readmore:hover {
     text-decoration: underline;
 }
@@ -334,3 +328,21 @@ body {
     }
 }
 
+=======
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+    .cards-grid {
+        grid-template-columns: 1fr; /* una columna en celulares */
+    }
+    
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .hero-inner, .hero-image {
+        width: 100%;
+    }
+}
+>>>>>>> 94e6925aca53295361b5e0165118289792afb8e9
