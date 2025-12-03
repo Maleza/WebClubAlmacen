@@ -2,7 +2,7 @@
    TIPOGRAFÍA Y RESET
 --------------------------------------------------------- */
 * {
-    margin: 0;
+    
     padding: 0;
     box-sizing: border-box;
 }
@@ -11,6 +11,8 @@ body {
     font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
     background: #f4f6f9;
     color: #1f2937;
+    justify-content: center;
+    
 }
 
 /* ---------------------------------------------------------
@@ -51,6 +53,7 @@ body {
     border: 1px solid #d1d5db;
     width: 240px;
     transition: 0.2s;
+    margin-left: 700px;
 }
 
 .search input:focus {
@@ -65,6 +68,7 @@ body {
 .layout {
     display: flex;
     margin-top: 64px;
+    
 }
 
 /* ---------------------------------------------------------
@@ -155,7 +159,7 @@ body {
 .hero {
     margin-left: 260px;
     padding: 60px 40px;
-    background: linear-gradient(135deg, #2563eb, #1e40af);
+    background: linear-gradient(135deg, #eb9525, #af6b1e);
     color: white;
     border-radius: 16px;
     margin-top: 20px;
@@ -190,7 +194,7 @@ body {
     padding: 10px 18px;
     border-radius: 8px;
     background: white;
-    color: #1e40af;
+    color: #2e4283c4;
     font-weight: 600;
     text-decoration: none;
 }
@@ -222,16 +226,26 @@ body {
     }
 }
 
-
+/*Titulos de secciones*/
+.section-head {
+    margin-left: 260px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
 
 
 
 /* Contenedor de tarjetas estilo Instagram */
 .cards-grid {
+    margin-top: 40px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 20px;
-    padding: 10px 0 40px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+
+    /* centrarlas dentro del espacio */
+    width: calc(100% - 260px);
+    margin-left: 260px;
 }
 
 /* Tarjeta */
@@ -294,9 +308,29 @@ body {
     text-decoration: underline;
 }
 
+/*Footer*/
+.footer {
+    margin-top: 60px;
+    margin-left: 260px;
+    padding: 20px;
+    text-align: center;
+    background: #f9fafb;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+
+
+
+
+
 /* MOBILE */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .cards-grid {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: 1fr;
+        width: 100%;
+        margin-left: 0;
     }
 }
+

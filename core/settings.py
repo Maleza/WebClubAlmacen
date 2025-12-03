@@ -68,7 +68,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'webclubalmacen_db',
         'USER': 'postgres',
-        'PASSWORD': 'desarrollo',
+        'PASSWORD': '1234',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -131,4 +131,5 @@ AUTH_USER_MODEL = 'WebClubAlmacen.Usuario'
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'login'
 
-
+#Formato de Fecha
+DATE_INPUT_FORMATS = ['%Y-%m-%d', '%d/%m/%Y', '%d/%m/%y']

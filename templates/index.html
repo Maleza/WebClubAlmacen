@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Club Almacén — Inicio</title>
-  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <link rel="stylesheet" href="{% static 'css/index.css' %}?v=1.6" />
 </head>
 
 <body>
@@ -86,8 +86,8 @@
         {% for item in items %}
         <article class="card">
 
-          <div class="thumb"
-               style="background-image:url('{{ item.imagen|default:"https://placehold.co/600x340/cccccc?text=Sin+Imagen" }}')">
+          <div class="thumb">
+              <style="background-image:url('{{ item.imagen|default:"https://placehold.co/600x340/cccccc?text=Sin+Imagen" }}')"/>
           </div>
 
           <div class="card-body">
@@ -147,3 +147,6 @@
 
 </body>
 </html>
+
+
+
