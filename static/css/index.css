@@ -16,17 +16,19 @@ body {
 }
 /* Alinear contenido principal sin que se superponga con sidebar */
 .main {
-    margin-left: 260px;   /* igual al ancho de la sidebar */
-    padding: 20px;
-    width: calc(100% - 260px);
+    margin-left: 40px;                     /* espacio del sidebar */
+    padding: 30px 40px 30px 30px;           /* más respiración a la derecha */
+    width: calc(100% - 260px);              /* ocupar todo el espacio disponible */
+    max-width: 1650px;                      /* ancho óptimo en pantallas grandes */
+    margin-right: auto;                     /* empuja el main hacia la derecha */
+    width: max-content;
 }
-
 /* ---------------------------------------------------------
    TOPBAR MODERNO
 --------------------------------------------------------- */
 .topbar {
     position: fixed;
-    top: 0;
+    top: 0px;
     left: 0;
     width: 100%;
     height: 64px;
@@ -83,7 +85,7 @@ body {
 .sidebar {
     position: fixed;
     left: 0;
-    top: 56px;
+    top: 80px;
     width: 260px;
     height: calc(100% - 56px);
     overflow-y: auto;
@@ -161,18 +163,14 @@ body {
    HERO SECTION
 --------------------------------------------------------- */
 .hero {
-<<<<<<< HEAD
-    margin-left: 260px;
-    padding: 60px 40px;
+    margin-left: 260px;                 /* correrlo para evitar sidebar */
+    width: calc(100% - 260px);
+    box-sizing: border-box;
     background: linear-gradient(135deg, #eb9525, #af6b1e);
-=======
-    width: 100%;
-    background: linear-gradient(135deg, #e68524, #af701e);
->>>>>>> 94e6925aca53295361b5e0165118289792afb8e9
     color: white;
     border-radius: 16px;
-    padding: 40px;
-    min-height: 300px;
+    padding: 50px;
+    min-height: 320px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -250,17 +248,12 @@ body {
 .cards-grid {
     margin-top: 40px;
     display: grid;
-<<<<<<< HEAD
     grid-template-columns: repeat(2, 1fr);
     gap: 28px;
 
     /* centrarlas dentro del espacio */
     width: calc(100% - 260px);
     margin-left: 260px;
-=======
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
-    gap: 30px;
->>>>>>> 94e6925aca53295361b5e0165118289792afb8e9
 }
 
 .card {
@@ -297,7 +290,6 @@ body {
     font-weight: bold;
 }
 
-<<<<<<< HEAD
 .readmore:hover {
     text-decoration: underline;
 }
@@ -328,21 +320,3 @@ body {
     }
 }
 
-=======
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-    .cards-grid {
-        grid-template-columns: 1fr; /* una columna en celulares */
-    }
-    
-    .hero {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
-    }
-
-    .hero-inner, .hero-image {
-        width: 100%;
-    }
-}
->>>>>>> 94e6925aca53295361b5e0165118289792afb8e9
