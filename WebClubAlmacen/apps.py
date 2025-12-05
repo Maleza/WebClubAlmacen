@@ -1,6 +1,9 @@
 from django.apps import AppConfig
 
 
+
 class WebclubalmacenConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
     name = 'WebClubAlmacen'
+
+    def ready(self):
+        import WebClubAlmacen.signals

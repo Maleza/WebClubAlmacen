@@ -21,7 +21,7 @@ body {
     width: calc(100% - 260px);              /* ocupar todo el espacio disponible */
     max-width: 1650px;                      /* ancho óptimo en pantallas grandes */
     margin-right: auto;                     /* empuja el main hacia la derecha */
-    width: max-content;
+    width: max-content;                     /* ordena el contenido en el ancho maximo posible */
 }
 /* ---------------------------------------------------------
    TOPBAR MODERNO
@@ -284,6 +284,28 @@ body {
     margin: 0 0 15px;
     color: #555;
 }
+
+
+
+.cards-grid .card .thumb {
+    width: 100%;
+    height: 180px;               /* ajusta altura según diseño */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8px 8px 0 0;
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
 
 .readmore {
     color: #2a72ff;

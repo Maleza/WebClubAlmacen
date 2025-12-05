@@ -4,6 +4,7 @@ from .views import UsuarioLoginView
 
 urlpatterns = [
     path('', views.index_html, name='index'),
+    path("api/index-items/", views.api_index_items, name="api_index_items"),
 
     # -----------------------------
     # AUTENTICACIÓN

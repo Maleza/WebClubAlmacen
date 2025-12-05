@@ -9,62 +9,21 @@ from .forms import *
 from .models import *
 from WebClubAlmacen.models import DashboardItem
 from WebClubAlmacen.forms import DashboardItemForm
-
+from django.http import JsonResponse
+from django.core.paginator import Paginator
 
 # ---------------------------
 # PÁGINAS PÚBLICAS
 # ---------------------------
 
+from .models import ContenidoIndex
+
 def index_html(request):
-    ultimas_noticias = Noticia.objects.order_by('-id')[:4]
-    ultimos_beneficios = Beneficio.objects.order_by('-id')[:4]
-    ultimos_blogs = BlogPost.objects.order_by('-id')[:4]
-    ultimos_streams = Streaming.objects.order_by('-id')[:4]
+    items = ContenidoIndex.objects.all()[:20]
 
-    # Unificamos todos los elementos en una sola lista
-    items = []
-
-    for n in ultimas_noticias:
-        items.append({
-            "titulo": n.titulo,
-            "descripcion": n.contenido[:120],
-            "imagen": n.imagen.url if n.imagen else None,
-            "categoria": "Noticias",
-            "link": f"/noticias/{n.pk}/"
-        })
-
-    for b in ultimos_beneficios:
-        items.append({
-            "titulo": b.titulo,
-            "descripcion": b.descripcion[:120],
-            "imagen": b.imagen.url if hasattr(b, "imagen") and b.imagen else None,
-            "categoria": "Beneficios",
-            "link": f"/beneficios/"
-        })
-
-    for blog in ultimos_blogs:
-        items.append({
-            "titulo": blog.titulo,
-            "descripcion": blog.contenido[:120],
-            "imagen": blog.imagen.url if blog.imagen else None,
-            "categoria": "Blog",
-            "link": f"/blog/{blog.pk}/"
-        })
-
-    for s in ultimos_streams:
-        items.append({
-            "titulo": s.titulo,
-            "descripcion": s.descripcion[:120],
-            "imagen": None,
-            "categoria": "Streaming",
-            "link": f"/streaming/{s.pk}/"
-        })
-
-    context = {
+    return render(request, "index.html", {
         "items": items
-    }
-
-    return render(request, "index.html", context)
+    })
 
 
 
@@ -668,3 +627,28 @@ def invitacion_editar(request, pk):
 @permission_required('webclubalmacen.delete_invitacion', raise_exception=True)
 def invitacion_eliminar(request, pk):
     return eliminar(request, pk, Invitacion, "Invitación", 'invitaciones')
+
+
+
+
+
+#-----------------------API JSON SCROLL Infinito------------------------
+
+def api_index_items(request):
+    page = int(request.GET.get("page", 1))
+    paginator = Paginator(ContenidoIndex.objects.all(), 20)
+
+    items_page = paginator.get_page(page)
+
+    data = [{
+        "titulo": item.titulo,
+        "descripcion": item.descripcion,
+        "categoria": item.categoria,
+        "imagen": item.imagen.url if item.imagen else None,
+        "link": item.link,
+    } for item in items_page]
+
+    return JsonResponse({
+        "items": data,
+        "has_next": items_page.has_next(),
+    })

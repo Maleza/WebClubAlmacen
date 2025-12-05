@@ -154,3 +154,23 @@ class DashboardItem(models.Model):
     
     def __str__(self):
         return self.titulo
+
+# Modelo para el contenido del índex principal
+
+class ContenidoIndex(models.Model):
+    titulo = models.CharField(max_length=255)
+    descripcion = models.TextField(blank=True, null=True)
+    imagen = models.ImageField(upload_to="index/", null=True, blank=True)
+    categoria = models.CharField(max_length=100)
+    link = models.CharField(max_length=255)
+    fecha_publicacion = models.DateTimeField(auto_now_add=True)
+
+    # Para identificar desde qué modelo viene (Noticia, Beneficio, Blog, etc)
+    modelo_origen = models.CharField(max_length=100)
+    objeto_id = models.IntegerField()
+
+    class Meta:
+        ordering = ['-fecha_publicacion']
+
+    def __str__(self):
+        return f"{self.categoria}: {self.titulo}"
