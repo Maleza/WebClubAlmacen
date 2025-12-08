@@ -249,7 +249,7 @@ body {
     margin-top: 40px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
+    gap: 30px;
 
     /* centrarlas dentro del espacio */
     width: calc(100% - 260px);
