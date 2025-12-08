@@ -1,87 +1,97 @@
+# WebClubAlmacen/signals.py
+
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
-from django.urls import reverse
+from django.apps import apps
+from .models import ContenidoIndex, Noticia, Beneficio, BlogPost
 
-from .models import (
-    Noticia,
-    Beneficio,
-    BlogPost,
-    Streaming,
-    ContenidoIndex
-)
 
-# ======================================
-# CONFIGURACIÓN DEL ÍNDICE
-# ======================================
 
-MODELOS = {
+
+
+# CONFIG de modelos sincronizables → ordenados
+SYNC_MODELS = {
     "Noticia": {
         "model": Noticia,
+        "titulo": lambda o: o.titulo,
+        "descripcion": lambda o: o.contenido[:200],
+        "imagen": lambda o: o.imagen.url if o.imagen else "",
         "categoria": "Noticias",
-        "url": lambda obj: reverse("noticia_detalle", args=[obj.pk]),
-        "imagen": lambda obj: obj.imagen.url if obj.imagen else None,
-        "desc": lambda obj: (obj.contenido or "")[:250],
+        "link": lambda o: f"/noticias/{o.pk}/",
     },
 
     "Beneficio": {
         "model": Beneficio,
+        "titulo": lambda o: o.titulo,
+        "descripcion": lambda o: o.descripcion[:200],
+        "imagen": lambda o: o.imagen.url if o.imagen else "",
         "categoria": "Beneficios",
-        "url": lambda obj: reverse("beneficio_detalle", args=[obj.pk]),
-        "imagen": lambda obj: obj.imagen_ben.url if obj.imagen_ben else None,
-        "desc": lambda obj: (obj.descripcion or "")[:250],
+        "link": lambda o: f"/beneficios/",
     },
 
     "BlogPost": {
         "model": BlogPost,
+        "titulo": lambda o: o.titulo,
+        "descripcion": lambda o: o.descripcion[:200],
+        "imagen": lambda o: o.imagen.url if o.imagen else "",
         "categoria": "Blog",
-        "url": lambda obj: reverse("blog_detalle", args=[obj.pk]),
-        "imagen": lambda obj: obj.imagen_blog.url if obj.imagen_blog else None,
-        "desc": lambda obj: (obj.contenido or "")[:250],
-    },
-
-    "Streaming": {
-        "model": Streaming,
-        "categoria": "Streaming",
-        "url": lambda obj: reverse("streaming_detalle", args=[obj.pk]),
-        "imagen": lambda obj: obj.imagen_str.url if obj.imagen_str else None,
-        "desc": lambda obj: (obj.descripcion_str or "")[:250],
+        "link": lambda o: f"/blog/{o.pk}/",
     },
 }
 
 
-# ======================================
-# FUNCIÓN PARA CONECTAR SEÑALES
-# ======================================
+def sync_index(name, instance):
+    """Crea o actualiza una entrada en ContenidoIndex SIN DUPLICADOS"""
 
-def conectar_seniales(model, nombre_modelo):
+    config = SYNC_MODELS[name]
 
-    @receiver(post_save, sender=model)
-    def crear_o_actualizar(sender, instance, **kwargs):
-        config = MODELOS[nombre_modelo]
-
-        ContenidoIndex.objects.update_or_create(
-            modelo_origen=nombre_modelo,
-            objeto_id=instance.pk,
-            defaults={
-                "titulo": getattr(instance, "titulo", ""),
-                "descripcion": config["desc"](instance),
-                "categoria": config["categoria"],
-                "link": config["url"](instance),
-                "imagen": config["imagen"](instance),
-            },
-        )
-
-    @receiver(post_delete, sender=model)
-    def eliminar(sender, instance, **kwargs):
-        ContenidoIndex.objects.filter(
-            modelo_origen=nombre_modelo,
-            objeto_id=instance.pk
-        ).delete()
+    obj, created = ContenidoIndex.objects.update_or_create(
+        modelo_origen=name,
+        objeto_id=instance.pk,
+        defaults={
+            "titulo": config["titulo"](instance),
+            "descripcion": config["descripcion"](instance),
+            "imagen": config["imagen"](instance),
+            "categoria": config["categoria"],
+            "link": config["link"](instance),
+        }
+    )
 
 
-# ======================================
-# REGISTRAR TODAS LAS SEÑALES
-# ======================================
+def delete_from_index(name, instance):
+    ContenidoIndex.objects.filter(
+        modelo_origen=name,
+        objeto_id=instance.pk
+    ).delete()
 
-for nombre_modelo, config in MODELOS.items():
-    conectar_seniales(config["model"], nombre_modelo)
+
+# ------------- CONECTAR SEÑALES -------------
+
+@receiver(post_save, sender=Noticia)
+def noticia_updated(sender, instance, **kwargs):
+    sync_index("Noticia", instance)
+
+
+@receiver(post_delete, sender=Noticia)
+def noticia_deleted(sender, instance, **kwargs):
+    delete_from_index("Noticia", instance)
+
+
+@receiver(post_save, sender=Beneficio)
+def beneficio_updated(sender, instance, **kwargs):
+    sync_index("Beneficio", instance)
+
+
+@receiver(post_delete, sender=Beneficio)
+def beneficio_deleted(sender, instance, **kwargs):
+    delete_from_index("Beneficio", instance)
+
+
+@receiver(post_save, sender=BlogPost)
+def blog_updated(sender, instance, **kwargs):
+    sync_index("BlogPost", instance)
+
+
+@receiver(post_delete, sender=BlogPost)
+def blog_deleted(sender, instance, **kwargs):
+    delete_from_index("BlogPost", instance)

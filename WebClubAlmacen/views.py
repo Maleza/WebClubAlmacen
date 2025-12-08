@@ -16,17 +16,11 @@ from django.core.paginator import Paginator
 # PÁGINAS PÚBLICAS
 # ---------------------------
 
-from .models import ContenidoIndex
+
 
 def index_html(request):
-    items = ContenidoIndex.objects.all()[:20]
-
-    return render(request, "index.html", {
-        "items": items
-    })
-
-
-
+    items = ContenidoIndex.objects.order_by('-id')[:20]
+    return render(request, 'index.html', {'items': items})
 
 
 def asistente_IA_html(request):
