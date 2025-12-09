@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -19,7 +20,7 @@
     </div>
 
     <div class="search">
-      <input id="search-input" type="search" placeholder="Buscar noticias, comercios, entradas..."/>
+      <input id="search-input" type="search" placeholder="Buscar noticias, comercios, entradas..." />
     </div>
   </header>
 
@@ -85,17 +86,16 @@
 
         {% for item in items %}
         <article class="card">
-
           <div class="thumb" style="background-image:url('{{ item.imagen }}')"></div>
 
-
-          <h3>{{ item.titulo }}</h3>
-          <p>{{ item.descripcion }}</p>
-          <span class="tag">{{ item.categoria }}</span>
-          <a href="{{ item.link }}" class="readmore">Leer</a>
-
-          
+          <div class="card-body">
+            <h3>{{ item.titulo }}</h3>
+            <p>{{ item.descripcion }}</p>
+            <span class="tag">{{ item.categoria }}</span>
+            <a href="{{ item.link }}" class="readmore">Leer</a>
+          </div>
         </article>
+
         {% empty %}
         <p class="muted">No hay contenido disponible.</p>
         {% endfor %}
@@ -136,10 +136,8 @@
 
 
   <!-- JS -->
- <!-- <script src="{% static 'js/index.js' %}"></script>-->
+  <!-- <script src="{% static 'js/index.js' %}"></script>-->
 
 </body>
+
 </html>
-
-
-
