@@ -1,19 +1,21 @@
 {% extends 'crud/base.html' %}
 {% block content %}
 
-<div class="form-container">
-    <h2>{{ title }}</h2>
+<div class="form-card">
+    
+    <h2 class="form-title">{{ title }}</h2>
 
     {% if obj.imagen %}
-        <img src="{{ obj.imagen.url }}" class="preview-image">
+    <img src="{{ obj.imagen.url }}" class="form-preview">
     {% endif %}
 
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" class="form-body">
         {% csrf_token %}
         {{ form.as_p }}
 
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn-save">Guardar</button>
     </form>
+
 </div>
 
 {% endblock %}

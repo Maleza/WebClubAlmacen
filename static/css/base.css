@@ -24,6 +24,36 @@
     margin-bottom: 20px;
 }
 
+/*imagenes*/
+
+.thumb {
+    width: 100%;
+    height: 200px; /* Ajusta la altura como quieras */
+    background-size: cover;       /* Mantiene la imagen centrada sin deformarla */
+    background-position: center;  /* Enfoca el centro de la imagen */
+    background-repeat: no-repeat; /* Evita mosaicos */
+    border-radius: 10px 10px 0 0; /* Esquinas superiores redondeadas */
+    overflow: hidden;
+}
+
+.detail-card {
+    max-width: 900px;        /* Ajusta al ancho que quieras */
+    margin: 20px auto;
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+    overflow: hidden;        /* IMPORTANTE: evita que la imagen se salga */
+}
+
+.detail-image {
+    width: 100%;
+    height: 350px;           /* Ajusta la altura deseada del contenedor */
+    object-fit: cover;       /* Recorta la imagen para mantener proporciones */
+    object-position: center; /* Centra la imagen */
+    border-radius: 10px;
+    display: block;
+}
 
 
 
@@ -110,6 +140,21 @@ form textarea {
     background: #ccc;
 }
 
+.btn-login {
+    width: 100%;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #1b5e20;
+}
 
 /* ---------------------------------------------------------
    TABLAS DEL PANEL
