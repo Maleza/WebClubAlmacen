@@ -1,15 +1,9 @@
-# WebClubAlmacen/signals.py
-
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
-from django.apps import apps
 from .models import ContenidoIndex, Noticia, Beneficio, BlogPost
 
 
-
-
-
-# CONFIG de modelos sincronizables → ordenados
+# CONFIG de modelos sincronizables → claves homogéneas
 SYNC_MODELS = {
     "Noticia": {
         "model": Noticia,
@@ -26,13 +20,13 @@ SYNC_MODELS = {
         "descripcion": lambda o: o.descripcion[:200],
         "imagen": lambda o: o.imagen.url if o.imagen else "",
         "categoria": "Beneficios",
-        "link": lambda o: f"/beneficios/",
+        "link": lambda o: f"/beneficios/{o.pk}/",
     },
 
     "BlogPost": {
         "model": BlogPost,
         "titulo": lambda o: o.titulo,
-        "descripcion": lambda o: o.descripcion[:200],
+        "descripcion": lambda o: o.contenido[:200],   # ← FIX ✔
         "imagen": lambda o: o.imagen.url if o.imagen else "",
         "categoria": "Blog",
         "link": lambda o: f"/blog/{o.pk}/",
@@ -41,11 +35,11 @@ SYNC_MODELS = {
 
 
 def sync_index(name, instance):
-    """Crea o actualiza una entrada en ContenidoIndex SIN DUPLICADOS"""
+    """Crear o actualizar un registro en ContenidoIndex sin duplicados"""
 
     config = SYNC_MODELS[name]
 
-    obj, created = ContenidoIndex.objects.update_or_create(
+    ContenidoIndex.objects.update_or_create(
         modelo_origen=name,
         objeto_id=instance.pk,
         defaults={
@@ -65,12 +59,11 @@ def delete_from_index(name, instance):
     ).delete()
 
 
-# ------------- CONECTAR SEÑALES -------------
+# ---------- CONECTAR SEÑALES ----------
 
 @receiver(post_save, sender=Noticia)
-def noticia_updated(sender, instance, **kwargs):
+def noticia_saved(sender, instance, **kwargs):
     sync_index("Noticia", instance)
-
 
 @receiver(post_delete, sender=Noticia)
 def noticia_deleted(sender, instance, **kwargs):
@@ -78,9 +71,8 @@ def noticia_deleted(sender, instance, **kwargs):
 
 
 @receiver(post_save, sender=Beneficio)
-def beneficio_updated(sender, instance, **kwargs):
+def beneficio_saved(sender, instance, **kwargs):
     sync_index("Beneficio", instance)
-
 
 @receiver(post_delete, sender=Beneficio)
 def beneficio_deleted(sender, instance, **kwargs):
@@ -88,9 +80,8 @@ def beneficio_deleted(sender, instance, **kwargs):
 
 
 @receiver(post_save, sender=BlogPost)
-def blog_updated(sender, instance, **kwargs):
+def blog_saved(sender, instance, **kwargs):
     sync_index("BlogPost", instance)
-
 
 @receiver(post_delete, sender=BlogPost)
 def blog_deleted(sender, instance, **kwargs):
