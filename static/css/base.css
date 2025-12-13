@@ -6,6 +6,26 @@
     padding: 40px 20px;
     margin-left: 260px;               /* Espacio para el menú lateral */
 }
+/* CARD GENERAL */
+.card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 420px; /* 👈 clave */
+}
+
+/* CUERPO DE LA CARD */
+.card-body {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+
 
 /* TARJETA CENTRAL */
 .panel-card {
@@ -131,6 +151,17 @@ form textarea {
     text-decoration: none;
     font-weight: 600;
 }
+.btn-crear {
+    padding: 12px 20px;
+    background: #2e7d32;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
 
 .btn-save:hover {
     background: #1747c7;
@@ -184,3 +215,174 @@ form textarea {
 }
 
 
+/* CONTENEDOR FIJO PARA IMAGENES EN LIST.HTML */
+.list-thumb {
+    width: 100%;
+    height: 180px;               /* altura uniforme */
+    background: #f0f0f0;
+    overflow: hidden;             /* evita desbordes */
+    border-radius: 10px 10px 0 0; /* combina con tu card */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* IMAGEN AJUSTADA */
+.list-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;            /* evita deformación */
+    object-position: center;
+}
+
+/* SI NO HAY IMAGEN */
+.list-thumb.no-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #777;
+    font-size: 14px;
+    font-style: italic;
+}
+
+/* ========== LIST HEADER ========== */
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.list-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+/* ========== BOTÓN CREAR ========== */
+.btn-create {
+    padding: 10px 20px;
+    background: #10b981;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-create:hover {
+    background: #0d966b;
+}
+
+/* ========== GRID DE TARJETAS ========== */
+.list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 32px;
+}
+@media (max-width: 900px) {
+    .list-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ========== TARJETA ========== */
+.list-card {
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    height: 100% ;
+    max-width: 800px;
+}
+
+/* Imagen */
+.list-thumb {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Contenido */
+.list-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* 👈 permite que la card se estire */
+}
+
+.list-card-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.list-text {
+    color: #555;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+/* ========== BOTONES DE ACCIÓN ========== */
+.list-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto; /*  empuja los botones al fondo */
+    gap: 12px;
+}
+
+
+
+.list-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+
+
+.btn-view,
+.btn-edit,
+.btn-delete {
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Verde */
+.btn-view {
+    background: #2563eb;
+    color: white;
+}
+.btn-view:hover {
+    background: #1e4fc7;
+}
+
+/* Amarillo */
+.btn-edit {
+    background: #d97706;
+    color: white;
+}
+.btn-edit:hover {
+    background: #b86505;
+}
+
+/* Rojo */
+.btn-delete {
+    background: #dc2626;
+    color: white;
+}
+.btn-delete:hover {
+    background: #b91c1c;
+}
+
+.empty-msg {
+    color: #777;
+    font-style: italic;
+}
